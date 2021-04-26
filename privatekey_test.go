@@ -46,11 +46,11 @@ func TestPrivateKey_UnsafeECDH(t *testing.T) {
 		if !assert.NoError(t, err) {
 			return
 		}
-		ss1, err := privkey1.ECDH(privkey2.PublicKey)
+		ss1, err := privkey1.ECDH(&privkey2.PublicKey)
 		if !assert.NoError(t, err) {
 			return
 		}
-		ss2, err := privkey2.ECDH(privkey1.PublicKey)
+		ss2, err := privkey2.ECDH(&privkey1.PublicKey)
 		if !assert.NoError(t, err) {
 			return
 		}

@@ -28,7 +28,7 @@ func TestGenerateKey(t *testing.T) {
 func TestEncryptAndDecrypt(t *testing.T) {
 	privkey := NewPrivateKeyFromBytes(testingReceiverPrivkey)
 
-	ciphertext, err := Encrypt(privkey.PublicKey, []byte(testingMessage))
+	ciphertext, err := Encrypt(&privkey.PublicKey, []byte(testingMessage))
 	if !assert.NoError(t, err) {
 		return
 	}
@@ -74,7 +74,7 @@ func TestKEM(t *testing.T) {
 	k1 := NewPrivateKeyFromBytes(new(big.Int).SetInt64(2).Bytes())
 	k2 := NewPrivateKeyFromBytes(new(big.Int).SetInt64(3).Bytes())
 
-	sk1, err := k1.Encapsulate(k2.PublicKey)
+	sk1, err := k1.Encapsulate(&k2.PublicKey)
 	if !assert.NoError(t, err) {
 		return
 	}
@@ -139,7 +139,7 @@ func TestEncryptAgainstPythonVersion(t *testing.T) {
 		return
 	}
 
-	ciphertext, err := Encrypt(prv.PublicKey, []byte(testingMessage))
+	ciphertext, err := Encrypt(&prv.PublicKey, []byte(testingMessage))
 	if !assert.NoError(t, err) {
 		return
 	}

@@ -14,7 +14,7 @@ import (
 
 // PrivateKey is an instance of secp256k1 private key with nested public key
 type PrivateKey struct {
-	*PublicKey
+	PublicKey
 	D *big.Int
 }
 
@@ -28,7 +28,7 @@ func GenerateKey() (*PrivateKey, error) {
 	}
 
 	return &PrivateKey{
-		PublicKey: &PublicKey{
+		PublicKey: PublicKey{
 			Curve: curve,
 			X:     x,
 			Y:     y,
@@ -53,7 +53,7 @@ func NewPrivateKeyFromBytes(priv []byte) *PrivateKey {
 	x, y := curve.ScalarBaseMult(priv)
 
 	return &PrivateKey{
-		PublicKey: &PublicKey{
+		PublicKey: PublicKey{
 			Curve: curve,
 			X:     x,
 			Y:     y,

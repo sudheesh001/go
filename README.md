@@ -29,7 +29,7 @@ func main() {
 	}
 	log.Println("key pair has been generated")
 
-	ciphertext, err := ecies.Encrypt(k.PublicKey, []byte("THIS IS THE TEST"))
+	ciphertext, err := ecies.Encrypt(&k.PublicKey, []byte("THIS IS THE TEST"))
 	if err != nil {
 		panic(err)
 	}
